@@ -1,0 +1,11 @@
+
+
+@if(events().length){
+<ul>
+  @for (event of events(); track event.id) {
+  <li>
+    {{ event.eventname }} - {{ event.date }}
+  </li>
+  }
+</ul>
+}
