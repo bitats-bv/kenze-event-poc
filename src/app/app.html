@@ -96,8 +96,11 @@
 
 <main class="main">
   <div class="content">
-      <h1>Hellowkes, {{ title() }}</h1>
-
+      <h1>{{ title() }}</h1>
+      <menu>
+        <a routerLink="/">Home</a>
+        <a routerLink="/events">Events</a>
+      </menu>
       <router-outlet />
   </div>
 </main>

@@ -1,5 +1,5 @@
 import { Component, signal, OnInit, OnDestroy} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {
   MsalService,
@@ -15,16 +15,16 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App implements OnInit, OnDestroy {
-  protected readonly title = signal('aspire-play-ui');
+  protected readonly title = signal('Playground');
   isIframe = false;
 
   private readonly _destroying$ = new Subject<void>();
-  
+
   constructor(private authService: MsalService,private msalBroadcastService: MsalBroadcastService) {
   }
 

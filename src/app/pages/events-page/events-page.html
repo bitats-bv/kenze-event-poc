@@ -1,3 +1,13 @@
+<div class="header">
+  <h1>Events</h1>
+  <button (click)="addEvent()">Add Event</button>
+</div>
+
+<div class="events">
+ @if(showEventForm){
+   <h3>New event</h3>
+   <app-kenzeevent-form (eventSubmitted)="handleEventsubmitted($event)" [disabled]="submitting"></app-kenzeevent-form>
+ }
 
 
 @if(events().length){
@@ -9,3 +19,4 @@
   }
 </ul>
 }
+</div>
