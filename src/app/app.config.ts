@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideHttpClient, withFetch, HTTP_INTERCEPTORS, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
+import {MAT_DATE_LOCALE, provideNativeDateAdapter} from '@angular/material/core';
 
 import {
   IPublicClientApplication,
@@ -81,7 +82,9 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch()),//, withInterceptorsFromDi()),
+    provideHttpClient(withFetch()), //, withInterceptorsFromDi()),
+    {provide: MAT_DATE_LOCALE, useValue: 'nl-BE'},
+    provideNativeDateAdapter(),
     {
       provide: HTTP_INTERCEPTORS,
         useClass: MsalInterceptor,

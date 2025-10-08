@@ -1,6 +1,6 @@
 <div class="header">
   <h1>Events</h1>
-  <button (click)="addEvent()">Add Event</button>
+  <button matButton="outlined" (click)="addEvent()">Add Event</button>
 </div>
 
 <div class="events">
@@ -9,14 +9,21 @@
    <app-kenzeevent-form (eventSubmitted)="handleEventsubmitted($event)" [disabled]="submitting"></app-kenzeevent-form>
  }
 
+@if(events().isLoading()){
+  <span>Loading...</span>
+}
 
-@if(events().length){
-<ul>
-  @for (event of events(); track event.id) {
-  <li>
-    {{ event.eventname }} - {{ event.date }}
-  </li>
+@if(events().hasValue()){
+  <mat-list role="list">
+  @for (event of events().value(); track event.id) {
+    <mat-list-item role="listitem">
+      <h3 matListItemTitle>{{ event.eventname }} - {{ event.date | date:'dd/MM/yyyy' }}</h3>
+      <mat-icon matListItemIcon>bolt</mat-icon>
+      <a  (click)="deleteEvent(event.id)">
+        <mat-icon matListItemIcon>delete</mat-icon>
+      </a>
+    </mat-list-item>
   }
-</ul>
+  </mat-list>
 }
 </div>

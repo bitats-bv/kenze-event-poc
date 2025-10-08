@@ -1,12 +1,17 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {KenzeEvent} from '../services/bff.service';
+
 
 @Component({
   selector: 'app-kenzeevent-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatDatepickerModule, MatFormFieldModule],
+  providers: [],
   templateUrl: './kenzeevent.form.html',
   styles: [`
     .event-form {
@@ -19,27 +24,6 @@ import {KenzeEvent} from '../services/bff.service';
 
     .form-group {
       margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: #007bff;
     }
 
     .error {
@@ -97,7 +81,7 @@ export class KenzeEventFormComponent {
       console.log('Event submitted:', eventModel);
 
       // Optionally reset the form after submission
-      // this.eventForm.reset();
+      //this.eventForm.reset();
     }
   }
 }

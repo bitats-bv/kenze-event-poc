@@ -9,7 +9,7 @@ import {
   RedirectRequest
 } from '@azure/msal-browser';
 import { filter } from 'rxjs/operators';
-import {EventsService, KenzeEvent} from '../services/bff.service';
+import EventsService, {KenzeEvent} from '../services/bff.service';
 import {KenzeEventFormComponent} from '../components/kenzeevent.form';
 
 @Component({

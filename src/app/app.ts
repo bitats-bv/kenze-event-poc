@@ -1,6 +1,6 @@
 import { Component, signal, OnInit, OnDestroy} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {MatMenuModule} from '@angular/material/menu';
 import {
   MsalService,
   MsalBroadcastService
@@ -15,7 +15,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, MatMenuModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

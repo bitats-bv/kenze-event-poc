@@ -1,28 +1,33 @@
 <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
   <div class="form-group">
-    <label for="name">Event Name</label>
-    <input
-      id="name"
-      type="text"
-      formControlName="name"
-      class="form-control"
-      placeholder="Enter event name"
-    />
+    <mat-form-field>
+      <mat-label>Event Name</mat-label>
+      <input
+        matInput
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Enter event name"
+      />
     @if( eventForm.get('name')?.invalid && eventForm.get('name')?.touched) {
       <div  class="error">
         Event name is required
       </div>
       }
+      </mat-form-field>
   </div>
 
   <div class="form-group">
-    <label for="date">Event Date</label>
-    <input
-      id="date"
-      type="date"
-      formControlName="date"
-      class="form-control"
-    />
+    <mat-form-field>
+      <mat-label>Event date</mat-label>
+      <input matInput [matDatepicker]="picker"
+             id="date"
+             formControlName="date">
+      <mat-hint>dd/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
     @if (eventForm.get('date')?.invalid && eventForm.get('date')?.touched){
     <div class="error">
       Event date is required

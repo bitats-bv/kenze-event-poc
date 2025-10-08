@@ -7,19 +7,24 @@ import {tap} from 'rxjs/operators';
 })
 export class EventsService {
   constructor(private http: HttpClient) {}
-  readonly events = httpResource<KenzeEventDto[]>(() => ({
-    url: '/bff/events',
-    method: 'GET'
-  }));
+
+  readonly events = httpResource<KenzeEvent[]>(
+    ()=> ({
+      url: `bff/events`, method: 'GET',
+    }),
+    {
+      parse: (response :unknown) => {
+        const array = response as KenzeEventDto[];
+        return array.map(p => {
+         return {id: p.id, eventname: p.name, date: new Date(p.date)} as KenzeEvent;
+        });
+      }
+    });
 
 
-  getEvents(): KenzeEvent[] {
-    return this.events.hasValue()
-      ? this.events.value().map(p => {
-        var e: KenzeEvent = {id: p.id, eventname:p.name, date: p.date};
-        return e;
-      })
-      : [];
+
+  getEvents() {
+    return this.events;
   }
 
 
@@ -31,7 +36,16 @@ export class EventsService {
       );
   }
 
+  deleteEvent(eventId: number) {
+    return this.http.delete('/bff/events/' + eventId)
+      .pipe(
+        tap(() => this.events.reload()
+        )
+      );
+  }
 }
+
+export default EventsService
 
 
 
