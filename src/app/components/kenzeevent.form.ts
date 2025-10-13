@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -54,10 +54,12 @@ import {KenzeEvent} from '../services/bff.service';
     }
   `]
 })
-export class KenzeEventFormComponent {
+export class KenzeEventFormComponent implements OnInit{
   @Input() event: KenzeEvent | undefined;
   @Input() disabled: boolean = false;
   @Output() eventSubmitted = new EventEmitter<KenzeEvent>();
+
+  isValid = signal<boolean>(false);
 
   eventForm: FormGroup;
 
@@ -68,6 +70,13 @@ export class KenzeEventFormComponent {
     });
   }
 
+  ngOnInit() {
+    this.isValid.set(this.eventForm.valid);
+
+    this.eventForm.statusChanges.subscribe(()=>{
+      this.isValid.set(this.eventForm.valid);
+    })
+  }
 
   onSubmit(): void {
     if (this.eventForm.valid) {

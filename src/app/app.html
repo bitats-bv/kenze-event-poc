@@ -61,12 +61,19 @@
     color: var(--gray-700);
   }
 
+  menu > a {
+    color: var(--french-violet);
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
+
   main {
     width: 100%;
     min-height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 1rem;
     box-sizing: inherit;
     position: relative;
@@ -79,7 +86,6 @@
   .content {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     width: 100%;
     max-width: 900px;
     margin-bottom: 3rem;
@@ -100,6 +106,7 @@
       <menu>
         <a routerLink="/">Home</a>
         <a routerLink="/events">Events</a>
+        <a routerLink="/dyna">Dyna</a>
       </menu>
       <router-outlet />
   </div>

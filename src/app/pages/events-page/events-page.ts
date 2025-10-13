@@ -1,4 +1,4 @@
-import {Component, computed} from '@angular/core';
+import {Component, computed, ViewChild, AfterViewChecked} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {EventsService ,KenzeEvent} from '../../services/bff.service'
 import {MatButtonModule} from '@angular/material/button';
@@ -13,14 +13,22 @@ import {MatIconModule} from '@angular/material/icon';
   templateUrl: './events-page.html',
   styleUrl: './events-page.scss'
 })
-export class EventsPage {
+export class EventsPage implements AfterViewChecked  {
+  @ViewChild(KenzeEventFormComponent) eventFormComponent!: KenzeEventFormComponent;
+
   showEventForm = false;
   submitting = false;
 
+  events = computed(() => this.eventsService.getEvents());
+  isAddFormValid = computed(()=> false);
+
   constructor(private eventsService: EventsService) {}
 
-  events = computed(() => this.eventsService.getEvents());
+  ngAfterViewChecked(): void {
+    this.isAddFormValid = computed(()=> this.eventFormComponent?.isValid() || false);
+  }
 
+  isLoading =  computed(()=> this.eventsService.eventsUpdating());
   addEvent(){
     this.showEventForm = true;
   }

@@ -6,12 +6,18 @@
 <div class="events">
  @if(showEventForm){
    <h3>New event</h3>
+
+   @if(!isAddFormValid()){
+     <span>Form is invalid</span>
+   }
+
    <app-kenzeevent-form (eventSubmitted)="handleEventsubmitted($event)" [disabled]="submitting"></app-kenzeevent-form>
  }
 
-@if(events().isLoading()){
+@if(isLoading()){
   <span>Loading...</span>
 }
+
 
 @if(events().hasValue()){
   <mat-list role="list">
