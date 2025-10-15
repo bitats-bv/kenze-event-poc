@@ -1,0 +1,28 @@
+.dyna-form-page {
+  padding: 20px;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+}
+
+.builder-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+}
+
+.main-content {
+  min-height: 500px;
+}

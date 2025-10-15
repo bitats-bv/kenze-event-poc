@@ -1,4 +1,7 @@
-<div style="display: flex; flex-direction: row">
+<div style="display: flex; flex-direction: row"
+     draggable="true"
+     (dragstart)="dragStart($event)"
+>
   <div>icon</div>
   <div>{{label}}</div>
 </div>
