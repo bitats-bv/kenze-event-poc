@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BFFPlayground.Migrations
 {
-    [DbContext(typeof(EventDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20251013090548_AddDynaFormBase")]
     partial class AddDynaFormBase
     {

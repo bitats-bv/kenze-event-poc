@@ -6,13 +6,13 @@ namespace BFFPlayground.Endpoints;
 
 internal static class DynaForms
 {
-    public static async Task<IResult> GetAll([FromServices] EventDbContext context)
+    public static async Task<IResult> GetAll([FromServices] ApplicationDbContext context)
     {
         var t = context.DynaForms.ToList();
         return TypedResults.Ok(t);
     }
 
-    public static async Task<IResult> Search([FromServices] EventDbContext context, [FromRoute] string jsonName)
+    public static async Task<IResult> Search([FromServices] ApplicationDbContext context, [FromRoute] string jsonName)
     {
         var result = context.DynaForms
             .Where(f => 

@@ -14,6 +14,16 @@ internal static class Api
         return app;
     }
     
+    public static IEndpointRouteBuilder MapAnnouncements(this IEndpointRouteBuilder app)
+    {
+        var events = app.MapGroup("events");
+
+        events.MapGet("/", Announcements.GetAll).WithName("GetAllAnnouncements").WithDisplayName("Get all Announcements");
+        events.MapPost("/", Announcements.NewAnnouncement);
+        events.MapDelete("/{eventId}", Announcements.DeleteAnnouncement);
+        return app;
+    }
+    
     public static IEndpointRouteBuilder MapDynaForms(this IEndpointRouteBuilder app)
     {
         var events = app.MapGroup("dynaform");

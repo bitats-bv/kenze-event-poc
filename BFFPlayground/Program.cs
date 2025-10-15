@@ -1,6 +1,6 @@
 using BFFPlayground;
 using BFFPlayground.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,11 +11,26 @@ builder.Services.AddOpenApi();
 
 builder.AddServiceDefaults();
 
-builder.AddNpgsqlDbContext<EventDbContext>(connectionName:"kenze-events");
-
-
+builder.AddNpgsqlDbContext<ApplicationDbContext>(connectionName:"kenze-events");
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    try
+    {
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database.");
+        throw;
+    }
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -32,6 +47,7 @@ var summaries = new[]
 
 app.MapKenzeEvents();
 app.MapDynaForms();
+app.MapAnnouncements();
 
 app.Run();
 
