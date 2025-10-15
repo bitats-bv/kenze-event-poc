@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/aspire-8.0.json",
+  "resources": {
+    "bffplayground": {
+      "type": "project.v0",
+      "path": "../BFFPlayground/BFFPlayground.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
+        "HTTP_PORTS": "{bffplayground.bindings.http.targetPort}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "external": true
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http",
+          "external": true
+        }
+      }
+    },
+    "angular": {
+      "type": "container.v1",
+      "build": {
+        "context": "../AspireJavaScript.Angular",
+        "dockerfile": "../AspireJavaScript.Angular/Dockerfile"
+      },
+      "env": {
+        "NODE_ENV": "development",
+        "services__bffplayground__http__0": "{bffplayground.bindings.http.url}",
+        "services__bffplayground__https__0": "{bffplayground.bindings.https.url}",
+        "PORT": "{angular.bindings.http.targetPort}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "targetPort": 8000,
+          "external": true
+        }
+      }
+    }
+  }
+}

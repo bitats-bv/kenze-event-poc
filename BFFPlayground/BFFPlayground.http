@@ -1,0 +1,19 @@
+@BFFPlayground_HostAddress = http://localhost:5178
+
+GET {{BFFPlayground_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{BFFPlayground_HostAddress}}/events/
+Accept: application/json
+
+###
+
+GET {{BFFPlayground_HostAddress}}/dynaform/
+Accept: application/json
+
+###
+
+GET {{BFFPlayground_HostAddress}}/dynaform/1
+Accept: application/json

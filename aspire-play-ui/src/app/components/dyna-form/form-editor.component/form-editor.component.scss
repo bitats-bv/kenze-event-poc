@@ -1,0 +1,142 @@
+.form-editor {
+  padding: 20px;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+}
+
+.drop-zone {
+  min-height: 300px;
+  padding: 16px;
+  background: white;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  transition: all 0.3s;
+
+  &.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.cdk-drop-list-dragging {
+    border-color: #2196F3;
+    background: #f0f8ff;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.form-field {
+  margin-bottom: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+}
+
+.field-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.drag-handle {
+  cursor: move;
+  color: #999;
+  font-size: 20px;
+
+  &:hover {
+    color: #666;
+  }
+}
+
+.field-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  strong {
+    font-size: 14px;
+  }
+
+  small {
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #999;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #f44336;
+  }
+
+  .material-icons {
+    font-size: 20px;
+  }
+}
+
+.form-preview {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 4px;
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  pre {
+    margin: 0;
+    padding: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+}
+
+.cdk-drag-preview {
+  padding: 12px;
+  background: white;
+  border: 1px solid #2196F3;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0.9;
+}
+
+.cdk-drag-placeholder {
+  background: #e3f2fd;
+  border: 2px dashed #2196F3;
+  min-height: 50px;
+  border-radius: 4px;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
