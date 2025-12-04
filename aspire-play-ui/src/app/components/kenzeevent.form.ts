@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, signal} from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -10,7 +10,7 @@ import {KenzeEvent} from '../services/bff.service';
 @Component({
   selector: 'app-kenzeevent-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatDatepickerModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatDatepickerModule, MatFormFieldModule],
   providers: [],
   templateUrl: './kenzeevent.form.html',
   styles: [`

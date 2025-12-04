@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject, signal, resource, computed} from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { filter } from 'rxjs/operators';
 import EventsService, {KenzeEvent} from '../services/bff.service';
 import {KenzeEventFormComponent} from '../components/kenzeevent.form';
@@ -8,7 +8,7 @@ import {KenzeEventFormComponent} from '../components/kenzeevent.form';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: [],
-  imports: [CommonModule, KenzeEventFormComponent]
+  imports: [KenzeEventFormComponent]
 })
 export class HomeComponent implements OnInit {
   loginDisplay = false;
